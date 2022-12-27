@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+# React hooks
+###  Хуки — механизм в React, который позволяет работать полностью без классов. Он не приносит ничего нового, но облегчает повторное использование кода для решения общих задач.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+###### Хук useState - это функция, которая используется для хранения состояния в функциональном компоненте. Он принимает аргумент как начальное значение состояния и возвращает массив с 2 элементами. Первый элемент - это текущее значение состояния. Второй элемент - это функция обновления состояния.
+### useStateпринимает начальное состояние и возвращает два значения:
+###### • Текущее состояние.
+######   • Функция, которая обновляет состояние.
+--------------------------------------------------
+``` 
+import React, {useState} from "react";
 
-## Available Scripts
+const [currentStateValue, functionToUpdateState] =useState(initialStateValue);
+```
+#### код для обновления состояния на основе предыдущего значения состояния.
 
-In the project directory, you can run:
+```
+import React, { useState } from "react";
 
-### `npm start`
+function Counter() {
+     const [count, setCount] = useState(0);
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+    return (
+        <div>
+            <button
+                onClick={() => {
+                    setCount(count + 1);
+                }}>
+                Count: {count}
+            </button>
+        </div>
+    );
+}
+```
+######Хук useEffect позволяет нам выполнять побочные эффекты в функциональных компонентах. Это помогает нам избежать избыточного кода в различных методах жизненного цикла классового компонента. Это помогает сгруппировать связанный код.
+#### Хук useEffect - это функция, которая принимает callback. Этот callback вызывается каждый раз, когда происходит рендеринг.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+> Печатает Boom в консоли каждый раз, когда он монтируется или обновляется.
+```
+import React, { useState, useEffect } from "react";
 
-### `npm test`
+function Banner() {
+    const [count, setCount] = useState(0);
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    useEffect(() => {
+        console.log("Boom");
+        });
 
-### `npm run build`
+    const updateState = () => {
+        setCount(count + 1);
+    };
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    return (
+        <div>
+            <button onClick={updateState}>State: {count}</button>
+        </div>
+    );
+}
+```
+### Oсобенности:
+> Хуки можно вызывать только внутри функциональных компонентов React.
+> Хуки можно вызывать только на верхнем уровне компонента.
+> Хуки не могут быть условными
+> Хуки не будут работать в компонентах класса React.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
